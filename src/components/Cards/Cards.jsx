@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import "./card.css";
-
-const AllCards = () => {
+const Cards = () => {
   const [cards, setCards] = useState([]);
   const [searchTitle, setSearchTitle] = useState("");
 
@@ -69,7 +68,9 @@ const AllCards = () => {
                 <h1 className="text-xl font-bold capitalize">{card.name}</h1>
                 <p className="capitalize">
                   <span className=" font-semibold">Type:</span>{" "}
-                  {card.types.map((type) => type.type.name).join(", ")}
+                  <span className=" capitalize">
+                    {card.types.map((type) => type.type.name).join(", ")}
+                  </span>
                 </p>
                 <p>
                   <span className=" font-semibold">Height:</span> {card.height}
@@ -86,4 +87,4 @@ const AllCards = () => {
   );
 };
 
-export default AllCards;
+export default Cards;
