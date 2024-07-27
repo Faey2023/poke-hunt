@@ -9,7 +9,7 @@ const Cards = () => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=50")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.results);
+        // console.log(data.results);
         const fetchDetails = data.results.map((pokemon) =>
           fetch(pokemon.url).then((res) => res.json())
         );
@@ -30,15 +30,15 @@ const Cards = () => {
   };
 
   return (
-    <div className="md:px-32 my-10">
-      <h3 className="text-center text-5xl font-semibold italic">
-        Explore All Pokemon Cards
+    <div className="lg:px-32 px-auto my-10">
+      <h3 className="text-center text-xl md:text-5xl font-medium">
+        Explore the World of Pokémon! 🌟
       </h3>
       {/* search bar */}
-      <div className="mb-10 flex justify-between my-5">
-        <div>
-          <h1 className="font-bold text-base">Search Pokémon</h1>
-          <p className="text-[#7C7C7C] font-medium text-sm">
+      <div className="mb-10 flex flex-col md:flex-row justify-between my-5">
+        <div className="flex flex-col justify-center items-center">
+          <h1 className="text-base">Search Pokémon 🕵️‍♂️</h1>
+          <p className="text-[#7C7C7C] text-sm">
             Total {filteredCards.length} Pokémon
           </p>
         </div>
@@ -46,14 +46,14 @@ const Cards = () => {
           <CiSearch className="w-7 h-7" />
           <input
             type="text"
-            placeholder="Search by Pokémon name..."
+            placeholder="Pokémon name..."
             value={searchTitle}
             onChange={handleSearchTitle}
-            className="outline-none text-[#7C7C7C] font-semibold"
+            className="outline-none text-[#7C7C7C]"
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 space-y-5">
+      <div className="grid grid-rows-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-10 space-y-5">
         {/* cards */}
         {filteredCards.map((card, index) => (
           <div className="flip-card" key={index}>
@@ -65,19 +65,17 @@ const Cards = () => {
                 />
               </div>
               <div className="flip-card-back">
-                <h1 className="text-xl font-bold capitalize">{card.name}</h1>
-                <p className="capitalize">
-                  <span className=" font-semibold">Type:</span>{" "}
+                <h1 className="text-2xl capitalize mt-5 font-medium">
+                  {card.name}
+                </h1>
+                <p>
+                  Type:{" "}
                   <span className=" capitalize">
                     {card.types.map((type) => type.type.name).join(", ")}
                   </span>
                 </p>
-                <p>
-                  <span className=" font-semibold">Height:</span> {card.height}
-                </p>
-                <p>
-                  <span className=" font-semibold">Weight:</span> {card.weight}
-                </p>
+                <p>Height: {card.height}</p>
+                <p>Weight: {card.weight}</p>
               </div>
             </div>
           </div>
